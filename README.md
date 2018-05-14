@@ -42,7 +42,7 @@ This will normalize data and include ids of items:
       allIds: [1],
     }
   },
-  ...axiosRequestData
+  ...remainingAxiosData
 }
 ```
 
