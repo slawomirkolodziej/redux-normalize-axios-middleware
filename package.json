@@ -1,0 +1,25 @@
+{
+  "name": "redux-normalizr-axios-middleware",
+  "version": "1.0.0",
+  "description": "Normalize data using redux-axios-middleware and normalizr schema",
+  "main": "dist/bundle.js",
+  "scripts": {
+    "prepublish": "npm run build",
+    "build": "webpack"
+  },
+  "author": "Sławomir Kołodziej",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "lodash": "^4.17.10",
+    "normalizr": "^3.2.4"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-latest": "^6.24.1",
+    "babel-preset-stage-1": "^6.24.1",
+    "webpack": "^4.8.3",
+    "webpack-cli": "^2.1.3"
+  }
+}
