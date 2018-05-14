@@ -1,10 +1,10 @@
 {
-  "name": "redux-normalizr-axios-middleware",
+  "name": "redux-normalize-axios-middleware",
   "version": "1.0.0",
   "description": "Normalize data using redux-axios-middleware and normalizr schema",
   "main": "dist/bundle.js",
   "scripts": {
-    "prepublish": "npm run build",
+    "prepublish": "yarn build",
     "build": "webpack"
   },
   "repository": {
