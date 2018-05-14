@@ -1,18 +1,24 @@
 import { normalize } from 'normalizr';
-import { has, mapValues, keys } from 'lodash';
+import { get, has, keys, map, mapValues } from 'lodash';
 
 const shouldNormalizeAction = action => (
-  has(action, 'payload.data') && has(action, 'meta.previousAction.schema')
+  has(action, 'payload.data') &&
+  has(action, 'meta.previousAction.normalize.schema')
 );
 
 const appendAllIds = data => mapValues(data.entities, entity => (
-  { items: entity, allIds: keys(entity) }
+  { items: entity, allIds: map(entity, item => item.id) }
 ));
 
 export default store => next => action => {
   if(!shouldNormalizeAction(action)) return next(action);
 
-  const normalizedData = normalize(action.payload.data, action.meta.previousAction.schema);
+  const data = action.payload.data;
+  const schema = action.meta.previousAction.normalize.schema;
+  const path = get(action.meta.previousAction.normalize, 'path');
+
+  const requestData = path ? get(data, path) : data;
+  const normalizedData = normalize(requestData, schema);
   const normalizedDataWithAllIds = appendAllIds(normalizedData);
   return next({
     ...action,

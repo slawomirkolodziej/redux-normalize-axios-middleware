@@ -32,6 +32,10 @@ describe('normalize middleware', () => {
     ],
   };
 
+  const responseWithNestedData = {
+    data: { items: response.data }
+  };
+
   const authorSchema = new schema.Entity('authors');
   const articlesSchema = [new schema.Entity('articles', {
     author: authorSchema,
@@ -42,10 +46,25 @@ describe('normalize middleware', () => {
     payload: response,
     meta: {
       previousAction: {
-        schema: articlesSchema,
+        normalize: {
+          schema: articlesSchema,
+        }
       },
     },
   };
+
+  const actionWithPath = {
+    type: 'success',
+    payload: responseWithNestedData,
+    meta: {
+      previousAction: {
+        normalize: {
+          schema: articlesSchema,
+          path: 'items'
+        }
+      },
+    },
+  }
 
   const normalizedArticles = {
     1: {
@@ -78,10 +97,16 @@ describe('normalize middleware', () => {
   });
 
   it('should include ids of items', () => {
-    store.dispatch(action);
-    expect(store.getActions()[0].payload.data.articles.allIds).toEqual(['1', '2']);
-    expect(store.getActions()[0].payload.data.authors.allIds).toEqual(['10', '20']);
+    store.dispatch(actionWithPath);
+    expect(store.getActions()[0].payload.data.articles.allIds).toEqual([1, 2]);
+    expect(store.getActions()[0].payload.data.authors.allIds).toEqual([10, 20]);
   });
+
+  it('should normalize data from path', () => {
+    store.dispatch(action);
+    expect(store.getActions()[0].payload.data.articles.items).toEqual(normalizedArticles);
+    expect(store.getActions()[0].payload.data.authors.items).toEqual(normalizedAuthors);
+  })
 
   it('should not try to normalize data if no schema provided', () => {
     const actionWithoutSchema = {
