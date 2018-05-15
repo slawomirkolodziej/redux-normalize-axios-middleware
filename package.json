@@ -2,11 +2,11 @@
   "name": "redux-normalize-axios-middleware",
   "version": "1.1.1",
   "description": "Normalize data using redux-axios-middleware and normalizr schema",
-  "main": "dist/bundle.js",
+  "main": "dist/index.js",
   "scripts": {
     "prepare": "yarn test && yarn build",
     "test": "jest",
-    "build": "babel src/index.js -o dist/bundle.js"
+    "build": "babel src/index.js -o dist/index.js"
   },
   "repository": {
     "type": "git",
@@ -16,7 +16,7 @@
   "license": "MIT",
   "private": false,
   "homepage": "https://github.com/slawomirkolodziej/redux-normalize-axios-middleware",
-  "dependencies": {
+  "peerDependencies": {
     "lodash": "^4.17.10",
     "normalizr": "^3.2.4"
   },
