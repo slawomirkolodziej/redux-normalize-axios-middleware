@@ -3,7 +3,7 @@
 Normalize data using [redux-axios-middleware](https://github.com/svrcekmichal/redux-axios-middleware) and [normalizr](https://github.com/paularmstrong/normalizr) schema
 
 ## Installation
-`yarn add redux-normalize-axios-middleware`
+`yarn add redux-normalize-axios-middleware normalizr`
 
 ## Usage
 Add normalizeAxiosMiddleware
