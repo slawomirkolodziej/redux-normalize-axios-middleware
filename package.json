@@ -6,7 +6,7 @@
   "scripts": {
     "prepare": "yarn test && yarn build",
     "test": "jest",
-    "build": "babel src/index.js -o dist/index.js"
+    "build": "babel src/index.js -d dist/index.js"
   },
   "repository": {
     "type": "git",
