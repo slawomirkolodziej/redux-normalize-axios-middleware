@@ -1,5 +1,9 @@
 import { normalize } from 'normalizr';
-import { get, has, keys, map, mapValues } from 'lodash';
+import get from 'lodash/get';
+import has from 'lodash/has';
+import keys from 'lodash/keys';
+import map from 'lodash/map';
+import mapValues from 'lodash/mapValues';
 
 const shouldNormalizeAction = action => (
   has(action, 'payload.data') &&
